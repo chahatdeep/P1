@@ -1,0 +1,10 @@
+clc;
+clear;
+close all;
+
+colorSamples = colorDistribution();
+
+options = statset('Display','final', 'MaxIter', 300);
+obj = gmdistribution.fit(R,4,'Options',options);
+
+

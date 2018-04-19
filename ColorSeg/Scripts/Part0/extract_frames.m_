@@ -1,0 +1,21 @@
+function [im_training, im_test] = extract_frames(video,t)
+
+vid=VideoReader(video); %Read Video
+n = vid.NumberOfFrames; % Number of frames
+cnt1 = 1;
+cnt2 = 1;
+% Get frames:
+for i = 1:n
+    frames = read(vid,i);
+    if(mod(i,t)==0)
+        imwrite(frames,['../Images/TrainingSet/Frames/' int2str(i), '.jpg']);
+        im_training{cnt1} = frames
+        cnt1 = cnt1 + 1;
+    else
+        imwrite(frames,['../Images/TestSet/Frames/' int2str(i), '.jpg']);
+        im_test{cnt2} = frames;
+        cnt2 = cnt2 + 1;
+    end
+end
+
+end
